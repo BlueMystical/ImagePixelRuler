@@ -34,6 +34,7 @@ namespace PixelRuler
 			this.cmdremoveSelected = new System.Windows.Forms.ToolStripButton();
 			this.cmdClearAll = new System.Windows.Forms.ToolStripButton();
 			this.cmdExport = new System.Windows.Forms.ToolStripButton();
+			this.cmdImportPoints = new System.Windows.Forms.ToolStripButton();
 			this.lblDescription = new System.Windows.Forms.ToolStripLabel();
 			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -53,6 +54,7 @@ namespace PixelRuler
             this.cmdremoveSelected,
             this.cmdClearAll,
             this.cmdExport,
+            this.cmdImportPoints,
             this.lblDescription});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
@@ -93,6 +95,17 @@ namespace PixelRuler
 			this.cmdExport.Click += new System.EventHandler(this.cmdExport_Click);
 			this.cmdExport.MouseMove += new System.Windows.Forms.MouseEventHandler(this.cmdExport_MouseMove);
 			// 
+			// cmdImportPoints
+			// 
+			this.cmdImportPoints.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.cmdImportPoints.Image = global::PixelRuler.Properties.Resources.import_24;
+			this.cmdImportPoints.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.cmdImportPoints.Name = "cmdImportPoints";
+			this.cmdImportPoints.Size = new System.Drawing.Size(23, 22);
+			this.cmdImportPoints.Text = "Import Points..";
+			this.cmdImportPoints.Click += new System.EventHandler(this.cmdImportPoints_Click);
+			this.cmdImportPoints.MouseMove += new System.Windows.Forms.MouseEventHandler(this.cmdImportPoints_MouseMove);
+			// 
 			// lblDescription
 			// 
 			this.lblDescription.Name = "lblDescription";
@@ -126,5 +139,6 @@ namespace PixelRuler
 		private System.Windows.Forms.ToolStripButton cmdClearAll;
 		private System.Windows.Forms.ToolStripButton cmdExport;
 		private System.Windows.Forms.ToolStripLabel lblDescription;
+		private System.Windows.Forms.ToolStripButton cmdImportPoints;
 	}
 }

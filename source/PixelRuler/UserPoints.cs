@@ -8,6 +8,7 @@ namespace PixelRuler
 	public partial class UserPoints : Form
 	{
 		public List<Point> Puntos { get; set; } //<- User defined points to save/export
+		public event EventHandler PointsChanged = delegate { }; //<- Evento con Manejador, para evitar los Null
 
 		public UserPoints()
 		{
@@ -43,6 +44,8 @@ namespace PixelRuler
 				this.listBox1.Items.Add(punto);
 			}
 			this.listBox1.Refresh();
+
+			PointsChanged?.Invoke(this.Puntos, null);
 		}
 
 
@@ -88,6 +91,32 @@ namespace PixelRuler
 			}
 			
 		}
+		private void cmdImportPoints_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				OpenFileDialog OFDialog = new OpenFileDialog()
+				{
+					Filter = "JSON Data|*.json;*.txt",
+					FilterIndex = 0,
+					DefaultExt = "json",
+					AddExtension = true,
+					CheckPathExists = true,
+					CheckFileExists = true,
+					FileName = string.Empty,
+					InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+				};
+				if (OFDialog.ShowDialog() == DialogResult.OK)
+				{
+					Puntos = DeSerialize_FromJSON<List<Point>>(OFDialog.FileName);
+					RefreshDataSource();
+				}
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+		}
 
 		private void cmdremoveSelected_MouseMove(object sender, MouseEventArgs e)
 		{
@@ -103,5 +132,32 @@ namespace PixelRuler
 		{
 			this.lblDescription.Text = "Export Points..";
 		}
+		private void cmdImportPoints_MouseMove(object sender, MouseEventArgs e)
+		{
+			this.lblDescription.Text = "Import Points..";
+		}
+
+		/// <summary>Crea una instancia de un Objeto leyendo sus datos desde un archivo JSON.
+		/// <para>Object type must have a parameterless constructor.</para></summary>
+		/// <typeparam name="T">The type of object to read from the file.</typeparam>
+		/// <param name="filePath">The file path to read the object instance from.</param>
+		/// <returns>Returns a new instance of the object read from the Json file.</returns>
+		public T DeSerialize_FromJSON<T>(string filePath) where T : new()
+		{
+			System.IO.TextReader reader = null;
+			try
+			{
+				reader = new System.IO.StreamReader(filePath);
+				var fileContents = reader.ReadToEnd();
+				return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(fileContents);
+			}
+			finally
+			{
+				if (reader != null)
+					reader.Close();
+			}
+		}
+
+		
 	}
 }

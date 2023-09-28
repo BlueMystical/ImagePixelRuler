@@ -83,7 +83,7 @@ namespace PixelRuler
 						{
 							if (i % 5 == 0) // <- Minor line each 5 pixels
 							{
-								e.Graphics.DrawLine(pen, new Point(0, i), new Point(3, i));
+								e.Graphics.DrawLine(pen, new Point(0, i), new Point(3, i));																
 							}
 							if (i % 10 == 0) //<- Mayor Line each 10 pixels
 							{
@@ -91,7 +91,10 @@ namespace PixelRuler
 							}
 							if (i % 50 == 0) //<- Number text each 50 pixels
 							{
-								e.Graphics.DrawString(i.ToString(), this.Font, brush, new Point(7, i - 6));
+								if (i > 0)
+								{
+									e.Graphics.DrawString(i.ToString(), this.Font, brush, new Point(7, i - 6));
+								}								
 							}
 						}
 
@@ -99,7 +102,7 @@ namespace PixelRuler
 						for (int i = 0; i < LoadedImage.Width; i++)
 						{
 							if (i % 5 == 0) // <- Minor line each 5 pixels
-							{
+							{								
 								e.Graphics.DrawLine(pen, new Point(i, 0), new Point(i, 3));
 							}
 							if (i % 10 == 0) //<- Mayor Line each 10 pixels
@@ -108,14 +111,28 @@ namespace PixelRuler
 							}
 							if (i % 50 == 0) //<- Number text each 50 pixels
 							{
-								e.Graphics.DrawString(i.ToString(), this.Font, brush, new Point(i, 7));
+								if (i > 0)
+								{
+									int spam = (i < 100) ? 8 : 10; //<- Horizontal spam for the text, text size dependant
+										spam = (i >= 1000) ? 14 : spam; //<- for 1.000px and more
+									e.Graphics.DrawString(i.ToString(), this.Font, brush, new Point(i -spam, 7));
+								}								
 							}
 						}
 
-						// Position Guides:
+						// 3. Position Guides: (Horizontal & Vertical at Mouse Position)
 						foreach (var line in lines)
 						{
 							e.Graphics.DrawLine(pen, line.Start, line.End);
+						}
+
+						// 4. User Points:
+						if (Puntos != null)
+						{
+							foreach (var punto in Puntos)
+							{
+								e.Graphics.DrawEllipse(pen, new RectangleF(new Point(punto.X -3, punto.Y-3), new Size(7,7)));
+							}
 						}
 					}
 				}				
@@ -127,9 +144,19 @@ namespace PixelRuler
 			{
 				Puntos = new List<Point>();
 				UserPointsForm = new UserPoints(Puntos);
+				UserPointsForm.PointsChanged += UserPointsForm_PointsChanged;
 				UserPointsForm.Show();
 			}
 			UserPointsForm.AddPoint(e.Location);
+		}
+
+		private void UserPointsForm_PointsChanged(object sender, EventArgs e)
+		{
+			//Ocure cuando se cambian los puntos en la ventana de 'UserPoints':
+			if (sender != null)
+			{
+				Puntos = sender as List<Point>;
+			}
 		}
 
 		private void cmdForeColor_Click(object sender, EventArgs e)
