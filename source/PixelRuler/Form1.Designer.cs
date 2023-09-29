@@ -37,6 +37,7 @@ namespace PixelRuler
 			this.cmdForeColor = new System.Windows.Forms.ToolStripButton();
 			this.lblLocation = new System.Windows.Forms.ToolStripLabel();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.toolStrip1.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -61,10 +62,11 @@ namespace PixelRuler
             this.cmdLoadImage,
             this.lblImageSize,
             this.cmdForeColor,
+            this.toolStripSeparator2,
             this.lblLocation});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(980, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(980, 28);
 			this.toolStrip1.TabIndex = 1;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -72,17 +74,18 @@ namespace PixelRuler
 			// 
 			this.cmdLoadImage.Image = ((System.Drawing.Image)(resources.GetObject("cmdLoadImage.Image")));
 			this.cmdLoadImage.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.cmdLoadImage.Margin = new System.Windows.Forms.Padding(0, 1, 0, 0);
+			this.cmdLoadImage.Margin = new System.Windows.Forms.Padding(4);
 			this.cmdLoadImage.Name = "cmdLoadImage";
-			this.cmdLoadImage.Size = new System.Drawing.Size(89, 24);
+			this.cmdLoadImage.Size = new System.Drawing.Size(89, 20);
 			this.cmdLoadImage.Text = "Load Image";
 			this.cmdLoadImage.Click += new System.EventHandler(this.cmdLoadImage_Click);
 			// 
 			// lblImageSize
 			// 
 			this.lblImageSize.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+			this.lblImageSize.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 			this.lblImageSize.Name = "lblImageSize";
-			this.lblImageSize.Size = new System.Drawing.Size(73, 22);
+			this.lblImageSize.Size = new System.Drawing.Size(73, 25);
 			this.lblImageSize.Text = "Size: 0 x 0 px";
 			// 
 			// cmdForeColor
@@ -91,8 +94,9 @@ namespace PixelRuler
 			this.cmdForeColor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 			this.cmdForeColor.Image = ((System.Drawing.Image)(resources.GetObject("cmdForeColor.Image")));
 			this.cmdForeColor.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.cmdForeColor.Margin = new System.Windows.Forms.Padding(4);
 			this.cmdForeColor.Name = "cmdForeColor";
-			this.cmdForeColor.Size = new System.Drawing.Size(63, 22);
+			this.cmdForeColor.Size = new System.Drawing.Size(63, 20);
 			this.cmdForeColor.Text = "ForeColor";
 			this.cmdForeColor.Click += new System.EventHandler(this.cmdForeColor_Click);
 			// 
@@ -100,7 +104,7 @@ namespace PixelRuler
 			// 
 			this.lblLocation.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
 			this.lblLocation.Name = "lblLocation";
-			this.lblLocation.Size = new System.Drawing.Size(70, 22);
+			this.lblLocation.Size = new System.Drawing.Size(70, 25);
 			this.lblLocation.Text = "Pos X: 0, Y:0";
 			// 
 			// panel1
@@ -109,10 +113,16 @@ namespace PixelRuler
 			this.panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.panel1.Controls.Add(this.pictureBox1);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel1.Location = new System.Drawing.Point(0, 25);
+			this.panel1.Location = new System.Drawing.Point(0, 28);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(980, 604);
+			this.panel1.Size = new System.Drawing.Size(980, 601);
 			this.panel1.TabIndex = 2;
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
 			// 
 			// Form1
 			// 
@@ -144,6 +154,7 @@ namespace PixelRuler
 		private System.Windows.Forms.ToolStripLabel lblImageSize;
 		private System.Windows.Forms.ToolStripButton cmdForeColor;
 		private System.Windows.Forms.ToolStripLabel lblLocation;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 	}
 }
 
